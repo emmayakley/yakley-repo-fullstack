@@ -10,7 +10,7 @@ Use console.log() to write the proper output to the command line.
 **/
 
 const fizzbuzz = function printFizzOrBuzzIfDivisibleByThreeOrFive (n) {
-    for (let i=1; i<=100; i++) {
+    for (let i=1; i<=100; i += 1) {
         if (i % 3 == 0 && i % 5 == 0) {
             console.log('fizzbuzz');
         }
