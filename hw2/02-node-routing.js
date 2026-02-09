@@ -21,9 +21,52 @@ const server = http.createServer((req, res) => {
     'other',
   ];
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('Node Routing Exercise');
-  res.end();
+  if (req.method === 'GET' && req.url == '/') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('Node Routing Exercise');
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/welcome') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>Welcome to the node routing section of HW2!</h1>');
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/redirect') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(302, { Location: '/redirected' });
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/redirected') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>You have been redirected :P</h1>');
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/redirected') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('<h1>You have been redirected :P</h1>');
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/cache') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Cache-Control': 'max-age=86400',
+    });
+    res.write('This resource was cached');
+    res.end();
+  } else if (req.method === 'GET' && req.url == '/cookie') {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Set-Cookie': 'hello=world',
+    });
+    res.write('cookies...yummm');
+    res.end();
+  } else {
+    console.log(`${req.method} - ${req.url}`);
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.write("404: The page you're looking for does not exist.");
+    res.end();
+  }
 });
 
 server.listen(port, () => {
